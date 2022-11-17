@@ -32,3 +32,4 @@ model transactions {
   creditedAccount   accounts @relation("creditedAccount", fields: [creditedAccountId], references: [id])
   debitedAccount    accounts @relation("debitedAccount", fields: [debitedAccountId], references: [id])
 }
+

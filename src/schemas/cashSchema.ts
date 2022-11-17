@@ -1,7 +1,7 @@
 import joi from "joi";
 
 const cashSchema = joi.object({
-	creditedAccountId: joi.number().required(),
+	username: joi.string().required(),
 	value: joi.number().required()
 });
 

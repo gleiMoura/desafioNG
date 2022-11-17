@@ -1,5 +1,5 @@
 import {
-	findAccountIdByUserId,
+	findUserByUserId,
 	findAccountIdByUsername,
 	findBalanceByAccountId,
 	updateBalance,
@@ -7,18 +7,29 @@ import {
 } from "../repositories/accountRepository.js";
 import { cashoutInterface } from "../controllers/accountController.js";
 
-export async function findBalance( userId: number ){
-	const balance = await findBalanceByAccountId( userId);
+export async function findBalance(userId: number) {
+	const balance = await findBalanceByAccountId(userId);
 
-	return balance; 
+	return balance;
 };
 
 export async function doNewCashOut(cashout: cashoutInterface) {
-	const {value, userId, username} = cashout;
-	const creditedAccountId = await findAccountIdByUsername(username);
-	const debitedAccountId = await findAccountIdByUserId(userId);
+	const { value, userId, username } = cashout;
+	const debitedUser = await findUserByUserId(userId);
 
-	if(creditedAccountId === debitedAccountId) {
+	const creditedAccountId = await findAccountIdByUsername(username);
+	const debitedAccountId = debitedUser.accountId;
+
+	if (creditedAccountId === null || debitedAccountId === null) {
+		throw {
+			response: {
+				message: "This account doesn't exist",
+				status: 404
+			}
+		};
+	}
+
+	if (creditedAccountId === debitedAccountId) {
 		throw {
 			response: {
 				message: "you can't do a transaction to yourself",
@@ -30,7 +41,7 @@ export async function doNewCashOut(cashout: cashoutInterface) {
 	const debitedBalance = await findBalance(debitedAccountId);
 	const creditedBalance = await findBalance(creditedAccountId);
 
-	if(debitedBalance < value) {
+	if (debitedBalance < value) {
 		throw {
 			response: {
 				message: "Your balance is not enough to do this transaction",
@@ -46,10 +57,23 @@ export async function doNewCashOut(cashout: cashoutInterface) {
 	await updateBalance(creditedAccountId, newCreditedBalance);
 
 	const transaction = {
-		value, 
+		value,
 		creditedAccountId,
 		debitedAccountId
 	}
 
 	await doTransactionCashout(transaction);
+
+	const debitedUsername = debitedUser.username;
+	const creditedUsername = username;
+
+	const data = {
+		value, 
+		debitedUsername,
+		creditedUsername,
+		creditedAccountId,
+		debitedAccountId
+	}
+
+	return data;
 };

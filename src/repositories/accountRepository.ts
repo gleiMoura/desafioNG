@@ -6,14 +6,18 @@ interface transaction {
 	debitedAccountId: number
 }
 
-export async function findAccountIdByUserId(userId: number) {
+export async function findUserByUserId(userId: number) {
 	const user = await prisma.users.findUnique({
 		where: {
 			id: userId
 		}
 	});
 
-	return user.accountId;
+	if(user === null) {
+		return null
+	}else{
+		return user;
+	}
 };
 
 export async function findAccountIdByUsername(username: string) {
@@ -23,11 +27,16 @@ export async function findAccountIdByUsername(username: string) {
 		}
 	});
 
-	return user.accountId;
+	if(user === null) {
+		return null
+	}else{
+		return user.accountId;
+	}
 };
 
 export async function findBalanceByAccountId(userId: number) {
-	const id = await findAccountIdByUserId(userId);
+	const user = await findUserByUserId(userId);
+	const id = user.accountId;
 
 	const account = await prisma.accounts.findFirst({
 		where: {
@@ -49,10 +58,15 @@ export async function updateBalance(accountId: number, value: number) {
 	});
 };
 
-export async function doTransactionCashout(transaction) {
-	await prisma.transactions.create({
-		data:{
-				
+export async function doTransactionCashout(transaction: transaction) {
+	const { value, creditedAccountId, debitedAccountId } = transaction;
+	const transactionData = await prisma.transactions.create({
+		data: {
+			value,
+			creditedAccountId,
+			debitedAccountId
 		}
-}); 
+	});
+
+	return transactionData;
 };
