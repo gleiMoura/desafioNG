@@ -35,5 +35,5 @@ export async function createAccountWithUser(username: string) {
 		data: {
 			accountId: id
 		}
-	})
+	});
 };
