@@ -6,6 +6,7 @@ import {
 	doTransactionCashout
 } from "../repositories/accountRepository.js";
 import { cashoutInterface } from "../controllers/accountController.js";
+import { formatDate } from "../utils/accountUtil.js";
 
 export async function findBalance(userId: number) {
 	const balance = await findBalanceByAccountId(userId);
@@ -56,10 +57,14 @@ export async function doNewCashOut(cashout: cashoutInterface) {
 	await updateBalance(debitedAccountId, newDebitedBalance);
 	await updateBalance(creditedAccountId, newCreditedBalance);
 
+	const date = new Date();
+	const createdAt = formatDate(date);
+
 	const transaction = {
 		value,
 		creditedAccountId,
-		debitedAccountId
+		debitedAccountId,
+		createdAt
 	}
 
 	await doTransactionCashout(transaction);
@@ -72,7 +77,8 @@ export async function doNewCashOut(cashout: cashoutInterface) {
 		debitedUsername,
 		creditedUsername,
 		creditedAccountId,
-		debitedAccountId
+		debitedAccountId,
+		createdAt
 	}
 
 	return data;

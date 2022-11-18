@@ -1,8 +1,16 @@
-import { findAllCashes } from "../repositories/trasactionRepository.js";
+import { findAllTransactions, findTransactionsByDateAndUserId } from "../repositories/trasactionRepository.js";
 
 
-export async function getAllCashesByUserId(userId: number) {
-	const cashes = await findAllCashes(userId);
+export async function getAllTransactionsByUserId(userId: number) {
+	const transactions = await findAllTransactions(userId);
 
-  return cashes; 
+
+
+  return transactions; 
+};
+
+export async function getTransactionsByDateAndUserId(userId: number, date: string) {
+	const transactions = await findTransactionsByDateAndUserId(userId, date);
+
+  return transactions; 
 };

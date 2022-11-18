@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { foregroundColorNames } from "chalk";
 dotenv.config();
 
 export default function getUserIdByToken(authorization: string): number {
@@ -50,4 +51,20 @@ export function verifyElement( data: {userId: number}, userId: number, element: 
             }
         }
     }
-}
+};
+
+export function formatDate(date: Date) {
+	const day  = date.getDate().toString(),
+        dayF = (day.length == 1) ? '0'+ day : day,
+        month  = (date.getMonth()+1).toString(),
+        monthF = (month.length == 1) ? '0' + month : month,
+        yearF = date.getFullYear();
+
+	const hourF = date.getHours(), 
+				minutesF = date.getMinutes(),
+				secondsF = date.getSeconds()
+
+	const newDate = `${dayF}/${monthF}/${yearF} ${hourF}:${minutesF}:${secondsF}`;
+
+	return newDate
+};

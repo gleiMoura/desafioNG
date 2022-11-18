@@ -8,10 +8,10 @@ datasource db {
 }
 
 model users {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
   password  String
-  accountId Int? 
+  accountId Int?
   accounts  accounts? @relation(fields: [accountId], references: [id])
 }
 
@@ -28,8 +28,7 @@ model transactions {
   debitedAccountId  Int
   creditedAccountId Int
   value             Float?
-  createdAt         DateTime @default(now())
+  createdAt         String
   creditedAccount   accounts @relation("creditedAccount", fields: [creditedAccountId], references: [id])
   debitedAccount    accounts @relation("debitedAccount", fields: [debitedAccountId], references: [id])
 }
-

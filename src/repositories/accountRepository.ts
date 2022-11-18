@@ -3,7 +3,8 @@ import prisma from "../config/database.js";
 interface transaction {
 	value: number,
 	creditedAccountId: number,
-	debitedAccountId: number
+	debitedAccountId: number,
+	createdAt: string
 }
 
 export async function findUserByUserId(userId: number) {
@@ -59,12 +60,14 @@ export async function updateBalance(accountId: number, value: number) {
 };
 
 export async function doTransactionCashout(transaction: transaction) {
-	const { value, creditedAccountId, debitedAccountId } = transaction;
+	const { value, creditedAccountId, debitedAccountId, createdAt } = transaction;
+
 	const transactionData = await prisma.transactions.create({
 		data: {
 			value,
 			creditedAccountId,
-			debitedAccountId
+			debitedAccountId,
+			createdAt
 		}
 	});
 

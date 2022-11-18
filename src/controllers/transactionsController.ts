@@ -1,12 +1,25 @@
 import { Request, Response } from "express";
 import getUserIdByToken from "../utils/accountUtil.js";
-import { getAllCashesByUserId } from "../services/transactionsService.js";
+import {
+	getAllTransactionsByUserId,
+	getTransactionsByDateAndUserId
+} from "../services/transactionsService.js";
 
-export async function getCashes(req: Request, res: Response) {
+export async function getTransactions(req: Request, res: Response) {
 	const { authorization } = req.headers;
 	const userId = getUserIdByToken(authorization);
 
-	const cashes = getAllCashesByUserId(userId);
+	const transactions = await getAllTransactionsByUserId(userId);
 
-	res.status(200).send(cashes)
+	res.status(200).send(transactions);
+};
+
+export async function getTransactionsByDate(req: Request, res: Response) {
+	const { authorization } = req.headers;
+	const userId = getUserIdByToken(authorization);
+	const { date }:{date:string} = req.body;
+
+	const transactions = await getTransactionsByDateAndUserId(userId, date);
+
+	res.status(200).send(transactions);
 };
