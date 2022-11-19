@@ -137,327 +137,194 @@ POST /cashOut
 
 # Transactions
 
-#### Create a new note
+#### get All transactions from a client by token
 
 ```http
-POST /note
+POST /getTransactions
 ```
 
-#### Request:
-
-| Body      | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `title`   | `string` | **Required**. Identifier for note |
-| `content` | `string` | **Required**. Note content        |
-
-`Title max length: 50`
-
-`Content max length: 1000`
-
-</br>
 
 #### Response:
 
 ```json
-"note was created!"
+{
+  "creditedTransactions": [
+    {
+      "value": 20,
+      "createdAt": "19/11/2022 12:27:31",
+      "debitedAccountId": 1,
+      "creditedAccountId": 2,
+      "debitedAccount": {
+        "users": [
+          {
+            "username": "João"
+          }
+        ]
+      },
+      "creditedAccount": {
+        "users": [
+          {
+            "username": "Jeferson"
+          }
+        ]
+      }
+    }
+  ],
+  "debitedTransactions": [
+    {
+      "value": 1,
+      "createdAt": "18/11/2022 19:23:20",
+      "debitedAccountId": 2,
+      "creditedAccountId": 1,
+      "debitedAccount": {
+        "users": [
+          {
+            "username": "Jeferson"
+          }
+        ]
+      },
+      "creditedAccount": {
+        "users": [
+          {
+            "username": "João"
+          }
+        ]
+      }
+    }
+	]
+}
 ```
 
 #
 
-#### Get all notes associated with the user
+#### Get transactions by date
 
 ```http
-GET /note
+GET /getTransactions/byDate
 ```
+#### Request:
+
+| Params | Type                                | Description              |
+| :----- | :-----------------------------------| :------------------------|
+| `date`   | `string` (format "DD/MM/YYY")     | **Required**. valid date |
+
+<br/>
+
+#### Response:
+
+```json
+{
+  "debitedTransactions": [
+    {
+      "value": 1,
+      "createdAt": "18/11/2022 19:23:20",
+      "debitedAccountId": 2,
+      "creditedAccountId": 1,
+      "debitedAccount": {
+        "users": [
+          {
+            "username": "Jeferson"
+          }
+        ]
+      },
+      "creditedAccount": {
+        "users": [
+          {
+            "username": "João"
+          }
+        ]
+      }
+    }
+  ],
+  "creditedTransactions": []//There isn't transactions in this date
+}
+```
+
+#
+
+#### get cash input transactions by date
+
+```http
+GET /getTransactions/byDate/cashIn
+```
+
+#### Request:
+
+| Params | Type                                | Description              |
+| :----- | :-----------------------------------| :------------------------|
+| `date`   | `string` (format "DD/MM/YYY")     | **Required**. valid date |
+
+<br/>
 
 #### Response:
 
 ```json
 [
-	{
-		"id": 3,
-		"title": "labore et ea",
-		"content": "Dignissimos architecto eos. Rerum quos consequatur vel doloremque consequatur. Velit voluptates qui voluptatum eum officiis illo dolorum consequatur. Cupiditate aut illo nobis. Explicabo officiis fuga.",
-		"userId": 1
-	},
-	{
-		"id": 4,
-		"title": "inventore dolorem id",
-		"content": "Rerum aut aut accusantium qui quis non. Dolores culpa voluptate iure exercitationem hic. Voluptatem et amet ipsum et ut qui id aliquid.",
-		"userId": 1
-	}
+  {
+    "value": 20,
+    "createdAt": "19/11/2022 12:27:31",
+    "debitedAccountId": 1,
+    "creditedAccountId": 2,
+    "debitedAccount": {
+      "users": [
+        {
+          "username": "João"
+        }
+      ]
+    },
+    "creditedAccount": {
+      "users": [
+        {
+          "username": "Jeferson"
+        }
+      ]
+    }
+  }
 ]
 ```
 
 #
 
-#### Get a note by identifier
+#### get cash output transactions by date
 
 ```http
-GET /note/${id}
+GET /getTransactions/byDate/cashOut
 ```
 
 #### Request:
 
-| Params | Type      | Description            |
-| :----- | :-------- | :--------------------- |
-| `id`   | `integer` | **Required**. valid id |
+| Params | Type                                | Description              |
+| :----- | :-----------------------------------| :------------------------|
+| `date`   | `string` (format "DD/MM/YYY")     | **Required**. valid date |
 
 <br/>
-
-#### Response:
-
-```json
-{
-	"id": 4,
-	"title": "inventore dolorem id",
-	"content": "Rerum aut aut accusantium qui quis non. Dolores culpa voluptate iure exercitationem hic. Voluptatem et amet ipsum et ut qui id aliquid.",
-	"userId": 1
-}
-```
-
-#
-
-#### Delete a note by identifier
-
-```http
-DELETE /note/${id}
-```
-
-#### Request:
-
-| Params | Type      | Description            |
-| :----- | :-------- | :--------------------- |
-| `id`   | `integer` | **Required**. valid id |
-
-<br/>
-
-# Cards
-
-# Create a new card
-
-```http
-POST /card
-```
-
-#### Request:
-
-| Body         | Type      | Description                        |
-| :----------- | :-------- | :--------------------------------- |
-| `title`      | `string`  | **Required**. identifier for card  |
-| `cardNumber`     | `string`  | **Required**. card number          |
-| `holderName` | `string`  | **Required**. card holder name     |
-| `password`       | `string`  | **Required**. card password        |
-| `secureCode`        | `string`  | **Required**. card cvv             |
-| `expireDate` | `string`  | **Required**. card expiration date |
-| `isVirtual`  | `boolean` | **Required**. card number          |
-| `type`       | `string`  | **Required**. card type            |
-
-`Date format: MM/YY`
-
-`Valid types: ["credit", "debit", "credit_debit"]`
-
-</br>
-
-#### Response:
-
-```json
-{
-  "title": "novo cartao",
-  "cardNumber": "2223334444555566666",
-  "holderName": "FULANO B CALDAS",
-  "expireDate": "07/09",
-  "isVirtual": true,
-  "type": "credit",
-  "userId": 3
-}
-```
-
-#
-
-#### Get all cards associated with the user
-
-```http
-GET /card
-```
 
 #### Response:
 
 ```json
 [
-	{
-		"id": 2,
-		"title": "unde in sit",
-		"cardNumber": "6377-5066-7282-1608",
-		"holderName": "Rudy McKenzie",
-		"expireCode": "098",
-		"expireDate": "11/24",
-		"isVirtual": true,
-		"type": "credit",
-		"userId": 1
-	},
-	{
-	    "id": 3,
-		"title": "unde in sit",
-		"cardNumber": "6397-5076-7682-1408",
-		"holderName": "Rudy McKenzie",
-		"expireCode": "043",
-		"expireDate": "14/26",
-		"isVirtual": true,
-		"type": "debit",
-		"userId": 1
-	}
+  {
+    "value": 1,
+    "createdAt": "19/11/2022 11:54:29",
+    "debitedAccountId": 2,
+    "creditedAccountId": 1,
+    "debitedAccount": {
+      "users": [
+        {
+          "username": "Jeferson"
+        }
+      ]
+    },
+    "creditedAccount": {
+      "users": [
+        {
+          "username": "João"
+        }
+      ]
+    }
+  }
 ]
 ```
-
-#
-
-#### Get a card by identifier
-
-```http
-GET /card/${id}
-```
-
-#### Request:
-
-| Params | Type      | Description            |
-| :----- | :-------- | :--------------------- |
-| `id`   | `integer` | **Required**. valid id |
-
-<br/>
-
-#### Response:
-
-```json
-{
-	"id": 3,
-	"title": "unde in sit",
-	"cardNumber": "6397-5076-7682-1408",
-	"holderName": "Rudy McKenzie",
-	"expireCode": "043",
-	"expireDate": "14/26",
-	"isVirtual": true,
-	"type": "debit",
-	"userId": 1
-}
-```
-
-#
-
-#### Delete a card by identifier
-
-```http
-DELETE /card/${id}
-```
-
-#### Request:
-
-| Params | Type      | Description            |
-| :----- | :-------- | :--------------------- |
-| `id`   | `integer` | **Required**. valid id |
-
-<br/>
-
-# Wifi
-
-# Create data from a new wifi network
-
-```http
-POST /note
-```
-
-#### Request:
-
-| Params     | Type     | Description                          |
-| :--------- | :------- | :----------------------------------- |
-| `title`    | `string` | **Required**. identifier for network |
-| `name`     | `string` | **Required**. network name           |
-| `password` | `string` | **Required**. network password       |
-
-</br>
-
-#### Response:
-
-```json
-{
-	"title": "quo maxime voluptas",
-	"networdName": "wifi16",
-	"userId": 3
-}
-```
-
-#
-
-#### Get all networks associated with the user
-
-```http
-GET /wifi
-```
-
-#### Response:
-
-```json
-[
-	{
-		"id": 2,
-		"title": "autem odit consequatur",
-		"networkName": "wifi.Carvalho16",
-		"password": "1fc741d03a09834e3c9f7e598b1c02734017b4f5dedb1415390abe877daaf05c36ce73ce0cb4f5da2653c51b4b4f36f3db10360d66cf6175b163199e7df31b84bff9a7630a85d869bedad2b3bdfba1a01019fc8c5e9f19b6234b4638f374d257f1e22a354397d8bbe65100",
-		"userId": 1
-	},
-	{
-		"id": 3,
-		"title": "et adipisci eum",
-		"networdName": "wifi.Moreira",
-		"password": "1fc741d03a09834e3c9f7e598b1c02734017b4f5dedb1415390abe877daaf05c36ce73ce0cb4f5da2653c51b4b4f36f3db10360d66cf6175b163199e7df31b84bff9a7630a85d869bedad2b3bdfba1a01019fc8c5e9f19b6234b4638f374d257f1e22a354397d8bbe65100",
-		"userId": 1
-	}
-]
-```
-
-#
-
-#### Get a network by identifier
-
-```http
-GET /wifi/${id}
-```
-
-#### Request:
-
-| Params | Type      | Description            |
-| :----- | :-------- | :--------------------- |
-| `id`   | `integer` | **Required**. valid id |
-
-<br/>
-
-#### Response:
-
-```json
-{
-	"id": 2,
-	"title": "autem odit consequatur",
-	"networdName": "wifi.Carvalho16",
-	"password": "23gv1TeAPQsBmS1",
-	"userId": 1
-}
-```
-
-#
-
-#### Delete a network by identifier
-
-```http
-DELETE /wifi/${id}
-```
-
-#### Request:
-
-| Params | Type      | Description            |
-| :----- | :-------- | :--------------------- |
-| `id`   | `integer` | **Required**. valid id |
-
-<br/>
 
 #
 
@@ -467,7 +334,7 @@ To run this project, you will need to add the following environment variables to
 
 `DATABASE_URL = postgres://UserName:Password@Hostname:5432/DatabaseName`
 
-`PORT = number #recommended:5000`
+`PORT = number #recommended:4000`
 
 `SECRET = any string`
 
