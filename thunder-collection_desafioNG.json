@@ -1,0 +1,189 @@
+{
+	"client": "Thunder Client",
+	"collectionName": "desafioNG",
+	"dateExported": "2022-11-19T15:01:29.219Z",
+	"version": "1.1",
+	"folders": [],
+	"requests": [
+		{
+			"_id": "b2b57ac4-4cfd-4ad3-8341-3afe46700006",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/signUp",
+			"url": "http://localhost:4000/signUp",
+			"method": "POST",
+			"sortNum": 10000,
+			"created": "2022-11-17T12:25:10.729Z",
+			"modified": "2022-11-17T12:25:10.729Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n    \"username\": \"gleisin\",\n    \"password\":\"E1020304\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "0a9389ec-d13f-4611-ba8f-5e160a044d31",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/signIn",
+			"url": "http://localhost:4000/SignIn",
+			"method": "POST",
+			"sortNum": 20000,
+			"created": "2022-11-17T12:25:38.430Z",
+			"modified": "2022-11-18T20:59:02.464Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n    \"username\": \"Jeferson\",\n    \"password\":\"E1020304050\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODY5MTMyMywiZXhwIjoxNjY4Nzc3NzIzfQ.FIQ6r2QaY0WTKWxAS1C2bDskrSJl0fRjfYe-3TaxjUA"
+			},
+			"tests": []
+		},
+		{
+			"_id": "ba30c99c-9eae-4f0e-9b7d-006eee06e3e9",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "https://localhost:4000/balance",
+			"url": "http://localhost:4000/balance",
+			"method": "GET",
+			"sortNum": 30000,
+			"created": "2022-11-17T12:34:40.048Z",
+			"modified": "2022-11-19T14:54:59.775Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n    \"url\": \"https://alienated-pregnancy\",\n\t\"userName\": \"MissWilbertWilliamson83\",\n    \"title\": \"b\",\n    \"password\":\"1020304050\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODg2OTY5MCwiZXhwIjoxNjY4OTU2MDkwfQ.pkacpfApQxtKLXHV4P5LHJ8jAXa2Dnq7MCxmWosr3E8"
+			},
+			"tests": []
+		},
+		{
+			"_id": "45c36b8f-f3a7-4834-b945-e5a722cea346",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/cashOut",
+			"url": "http://localhost:4000/cashOut",
+			"method": "POST",
+			"sortNum": 40000,
+			"created": "2022-11-17T13:19:39.958Z",
+			"modified": "2022-11-18T21:52:11.485Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n   \"value\": 1,\n   \"username\": \"gleisin\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODgwNTE0MiwiZXhwIjoxNjY4ODkxNTQyfQ.FQjZa02EBT_3tUC3dAejNJBwWSvqtEDgkDDw8c1ZuiU"
+			},
+			"tests": []
+		},
+		{
+			"_id": "285baea2-8cef-4c31-ae78-cc8ac3de942b",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/getTransactions",
+			"url": "http://localhost:4000/getTransactions",
+			"method": "GET",
+			"sortNum": 50000,
+			"created": "2022-11-18T20:58:21.724Z",
+			"modified": "2022-11-18T23:20:57.846Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n   \"date\": \"18/11/2022\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODgwNTE0MiwiZXhwIjoxNjY4ODkxNTQyfQ.FQjZa02EBT_3tUC3dAejNJBwWSvqtEDgkDDw8c1ZuiU"
+			},
+			"tests": []
+		},
+		{
+			"_id": "5cbf3cba-6c34-42a9-8935-30d857eef9ab",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/getTransactions",
+			"url": "http://localhost:4000/getTransactions/byDate",
+			"method": "GET",
+			"sortNum": 60000,
+			"created": "2022-11-19T14:56:34.298Z",
+			"modified": "2022-11-19T14:56:34.298Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n   \"date\": \"18/11/2022\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODgxMTY3MCwiZXhwIjoxNjY4ODk4MDcwfQ.6_7V9n_wXSGq405FUdK9neaIjVdGFbSl4BTuaqs6TGc"
+			},
+			"tests": []
+		},
+		{
+			"_id": "7d78ba3a-cd42-4efa-9df2-40b625520f63",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/getTransactions/byDate/cashIn",
+			"url": "http://localhost:4000/getTransactions/byDate/cashIn",
+			"method": "GET",
+			"sortNum": 70000,
+			"created": "2022-11-19T15:00:03.507Z",
+			"modified": "2022-11-19T15:00:03.507Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n   \"date\": \"19/11/2022\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODgxMTY3MCwiZXhwIjoxNjY4ODk4MDcwfQ.6_7V9n_wXSGq405FUdK9neaIjVdGFbSl4BTuaqs6TGc"
+			},
+			"tests": []
+		},
+		{
+			"_id": "c2983b49-c19a-4f34-847c-c5b6bb36c8f4",
+			"colId": "11897f92-6d1c-411e-bcc8-48b45f30b6e4",
+			"containerId": "",
+			"name": "http://localhost:4000/getTransactions/byDate/cashOut",
+			"url": "http://localhost:4000/getTransactions/byDate/cashOut",
+			"method": "GET",
+			"sortNum": 80000,
+			"created": "2022-11-19T15:00:26.151Z",
+			"modified": "2022-11-19T15:00:26.151Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n   \"date\": \"19/11/2022\"\n}",
+				"form": []
+			},
+			"auth": {
+				"type": "bearer",
+				"bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY2ODgxMTY3MCwiZXhwIjoxNjY4ODk4MDcwfQ.6_7V9n_wXSGq405FUdK9neaIjVdGFbSl4BTuaqs6TGc"
+			},
+			"tests": []
+		}
+	]
+}

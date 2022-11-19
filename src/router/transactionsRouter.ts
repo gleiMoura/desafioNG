@@ -20,12 +20,12 @@ transactionsRouter.get(
 	getTransactionsByDate
 );
 transactionsRouter.get(
-	"getTransactions/byDate/cashIn",
+	"/getTransactions/byDate/cashIn",
 	schemaValidator(transactionDateSchema),
 	getCashInByDate
 );
 transactionsRouter.get(
-	"getTransactions/byDate/cashOut",
+	"/getTransactions/byDate/cashOut",
 	schemaValidator(transactionDateSchema),
 	getCashOutByDate
 )
