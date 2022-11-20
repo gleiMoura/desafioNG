@@ -1,5 +1,5 @@
 <p align="center">
-  <img  src="https://i.ibb.co/tBC6CgV/2525754.png"
+  <img  src="https://st2.depositphotos.com/1001599/7044/v/450/depositphotos_70449587-stock-illustration-calculator-thin-line-icon.jpg"
     width="200px" height="200px" >
 </p>
 <h1 align="center">
