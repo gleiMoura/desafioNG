@@ -332,7 +332,17 @@ GET /getTransactions/byDate/cashOut
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL = postgres://UserName:Password@Hostname:5432/DatabaseName`
+`DATABASE_URL = postgres://UserName:Password@HostnameInDockerComposeFile:5432/DatabaseName`
+
+`PORT = 4000`
+
+`POSTGRES_USER=UserName`
+
+`POSTGRES_PASSWORD=Password`
+
+`POSTGRES_DB=DatabaseName`
+
+`SECRET = AnyString`
 
 `PORT = number #recommended:4000`
 
@@ -342,41 +352,44 @@ To run this project, you will need to add the following environment variables to
 
 ## Run Locally
 
-Clone the project
+upload the application's docker container
 
 ```bash
-  git clone https://github.com/gleiMoura/projeto19-drivenpass
+  npm run docker:up
 ```
 
-Go to the project directory
+if you want to run directly on your machine without docker
 
 ```bash
-  cd projeto19-drivenpass/
+  npm i
 ```
 
-Install dependencies
+then
 
 ```bash
-  npm install
+  npx prisma migrate dev
 ```
 
-Create database
+finally
 
 ```bash
-  npx prisma migrate reset
+  npm run dev
 ```
 
-Start the server
-
-```bash
-  npm run start
-```
 
 </br>
 
-## Lessons Learned
+## How to test the aplication with THUNDER CLIENT
 
-In this project I learned a lot about how to structure an API with TypeScript
+--> Go in "collections"
+
+--> Click in the "Menu" at right side
+
+--> Click in "import" 
+
+--> Choose the file with name "thunder-collection_desafioNG.json"
+
+--> Start to test
 
 </br>
 
@@ -396,4 +409,4 @@ In this project I learned a lot about how to structure an API with TypeScript
 
 #
 
-<a  href="mailto:contato.lucasalv@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></a>
+<a  href="https://www.linkedin.com/in/gleison-moura-794793220/" target="_blank"><img src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></a>
