@@ -1,10 +1,7 @@
 import prisma from "../config/database.js";
 import { findUserByUserId } from "./accountRepository.js";
 
-export async function findAllTransactions(userId: number) {
-	const user = await findUserByUserId(userId);
-	const { accountId } = user
-
+export async function findAllTransactions(accountId: number) {
 	const debitedTransactions = await prisma.transactions.findMany({
 		where: {
 			debitedAccountId: accountId,

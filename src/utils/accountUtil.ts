@@ -64,7 +64,8 @@ export function formatDate(date: Date) {
 				minutesF = date.getMinutes(),
 				secondsF = date.getSeconds()
 
-	const newDate = `${dayF}/${monthF}/${yearF} ${hourF}:${minutesF}:${secondsF}`;
+	const newDate = `${dayF}/${monthF}/${yearF} ${hourF}:${minutesF}`;
 
+	console.log(newDate)
 	return newDate
 };

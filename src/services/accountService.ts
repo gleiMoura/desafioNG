@@ -18,10 +18,19 @@ export async function doNewCashOut(cashout: cashoutInterface) {
 	const { value, userId, username } = cashout;
 	const debitedUser = await findUserByUserId(userId);
 
+	if (debitedUser === null) {
+		throw {
+			response: {
+				message: "This account doesn't exist",
+				status: 404
+			}
+		};
+	}
+
 	const creditedAccountId = await findAccountIdByUsername(username);
 	const debitedAccountId = debitedUser.accountId;
 
-	if (creditedAccountId === null || debitedAccountId === null) {
+	if (creditedAccountId === null) {
 		throw {
 			response: {
 				message: "This account doesn't exist",

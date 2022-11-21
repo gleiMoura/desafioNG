@@ -334,7 +334,9 @@ GET /getTransactions/byDate/cashOut
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL = postgres://UserName:Password@HostnameInDockerComposeFile:5432/DatabaseName`
+`DATABASE_URL = postgres://UserName:Password@Hostname:5432/DatabaseName`
+
+Hostname can be to docker-compose file "db" or, to work in machine, "localhost:5432";
 
 `PORT = 4000`
 

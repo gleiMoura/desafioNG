@@ -1,10 +1,21 @@
 import { findAllTransactions, findTransactionsByDateAndUserId } from "../repositories/trasactionRepository.js";
-
+import { findUserByUserId } from "../repositories/accountRepository.js";
 
 export async function getAllTransactionsByUserId(userId: number) {
-	const transactions = await findAllTransactions(userId);
+	const user = await findUserByUserId(userId);
 
+	if ( user === null) {
+		throw {
+			response: {
+				message: "This account doesn't exist",
+				status: 404
+			}
+		};
+	}
 
+	const { accountId } = user
+
+	const transactions = await findAllTransactions(accountId);
 
   return transactions; 
 };
